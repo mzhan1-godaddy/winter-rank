@@ -3,6 +3,19 @@ import './temperatureView.scss';
 import gdLogo from '../../images/gd-logo.png';
 import {locations} from '../../constants';
 
+
+function getFeaturesInView(map) {
+    const features = [];
+    map.eachLayer( function(layer) {
+        if(layer instanceof L.Marker) {
+            if(map.getBounds().contains(layer.getLatLng())) {
+                features.push(layer);
+            }
+        }
+    });
+    return features;
+}
+
 function initLocations(L, map, locations) {
     const icon = L.icon({
         iconUrl: gdLogo,
@@ -68,6 +81,12 @@ export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overl
             // shadowUrl: 'gatsby-icon.png',
             // shadowSize: [68, 95],
             // shadowAnchor: [22, 94]
+        });
+
+        map.on('moveend', function(e) {
+            // var bounds = map.getBounds();
+            const visibleFeatures = getFeaturesInView(map);
+            console.log({visibleFeatures});
         });
 
         // window.L.marker([50.5, 30.5]).bindTooltip('HiThere!').addTo(map);
