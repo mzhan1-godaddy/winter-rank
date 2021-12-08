@@ -3,34 +3,26 @@ import './temperatureView.scss';
 import gdLogo from '../../images/gd-logo.png';
 import {locations} from '../../constants';
 import {get} from '@tsamantanis/node-windy-api';
+import {getAverage, getLocationWeatherData, normalizeData} from "../../services/windy";
 
 async function getWindyData(lat, lon) {
 
     // const res = await standard(49.809, 16.787, 'BXBSHXdWiSLrrtRxkzwQNUb3vHMVwNUo');
 
-    const data = await get(
-        lat,
-        lon,
-        "gfs",
-        ["temp", "snowPrecip"],
-        ["surface"],
-        'BXBSHXdWiSLrrtRxkzwQNUb3vHMVwNUo'
-    )
-    //convert from K to Celsius
-    data['temp-surface'] = data['temp-surface'].map((temp) => (temp - 273.15).toFixed(2))
-    data.units['temp-surface'] = 'C';
+    // const data = await get(
+    //     lat,
+    //     lon,
+    //     "gfs",
+    //     ["temp", "snowPrecip"],
+    //     ["surface"],
+    //     'BXBSHXdWiSLrrtRxkzwQNUb3vHMVwNUo'
+    // )
+    //
+    // const weatherData = getAverage(normalizeData(data));
+    // console.log({weatherData});
 
-    const ts = data.ts;
-
-    const currentTime = new Date().getTime();
-
-    ts.sort((a, b)=>{
-        return Math.abs(currentTime - a) - Math.abs(currentTime - b);
-    });
-
-    console.log({data});
-    // console.log({ts});
-    // res contains json object
+    // const test =  await getLocationWeatherData(locations);
+    // console.log(test);
 }
 
 getWindyData(locations.Austin.lat, locations.Austin.lon).then();
