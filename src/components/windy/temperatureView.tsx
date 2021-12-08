@@ -56,7 +56,7 @@ export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overl
 
         map.panTo(new L.LatLng(lat, lon));
 
-        map.scrollWheelZoom.disable();
+        // map.scrollWheelZoom.disable();
 
 
 
