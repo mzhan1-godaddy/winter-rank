@@ -14,8 +14,8 @@ function initLocations(L, map, locations) {
         // shadowAnchor: [22, 94]
     });
     const tooltipOptions = {
-        sticky: true,
-        permanent: true,
+        sticky: false,
+        permanent: false,
         offset: L.point(6, 0),
         direction: 'right'
     }
@@ -25,7 +25,10 @@ function initLocations(L, map, locations) {
     });
 }
 
-export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
+const START_LAT = 14.997985547591881;
+const START_LON = 18.700967459515446;
+
+export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overlay = 'temp'}) {
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
@@ -49,6 +52,8 @@ export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
         // .map is instance of Leaflet map
 
         initLocations(window.L, map, locations);
+
+        map.panTo(new L.LatLng(lat, lon));
 
         const myIcon = window.L.icon({
             iconUrl: gdLogo,
