@@ -1,5 +1,6 @@
 import React from 'react';
 import './temperatureView.scss';
+import gatsbyIcon from '../../images/gatsby-icon.png';
 export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
 
     const options = {
@@ -25,17 +26,46 @@ export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
         const { map } = windyAPI;
         // .map is instance of Leaflet map
 
-        window.L.popup()
-            .setLatLng([50.4, 14.3])
-            .setContent('1')
-            .openOn(map)
+        // window.L.marker([50.5, 30.5]).bindTooltip('HiThere!').addTo(map);
+        const a = window.L.marker([60.5, 30.5]).addTo(map);
+        const b = window.L.marker([50.5, 30.5]).addTo(map);
 
-        window.L.popup()
-            .setLatLng([14.4, 50.3])
-            .setContent('2')
-            .openOn(map);
+        const tta = window.L.tooltip({sticky:true}, a);
+        tta.openTooltip();
+        // a.bindTooltip(tta).openTooltip();
+        b.bindTooltip('this is b').openTooltip();
+
+
+        const myIcon = window.L.icon({
+            iconUrl: gatsbyIcon,
+            iconSize: [20, 20],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76],
+            // shadowUrl: 'gatsby-icon.png',
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]
+        });
+        L.marker([50.505, 30.57], {icon: myIcon}).addTo(map);
+
+        // a.bindPopup('hi there 2 !!!').openPopup();
+        // window.L.marker([50.5, 30.5]).addTo(map).bindPopup('hi there !!!!').openPopup({autoClose: false});
+
+
+        // window.L.popup()
+        //     .setLatLng([50.4, 14.3])
+        //     .setContent('1')
+        //     .openOn(map)
+        //
+        // window.L.popup()
+        //     .setLatLng([14.4, 50.3])
+        //     .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+        //     .openOn(map);
+
     });
 
 
-    return (<div id="windy"/>);
+    return (<>
+        <div id="windy"/>
+        <div id="windy2"/>
+    </>);
 }
