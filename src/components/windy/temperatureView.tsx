@@ -1,8 +1,31 @@
 import React from 'react';
 import './temperatureView.scss';
-import gatsbyIcon from '../../images/gatsby-icon.png';
-export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
+import gdLogo from '../../images/gd-logo.png';
+import {locations} from '../../constants';
 
+function initLocations(L, map, locations) {
+    const icon = L.icon({
+        iconUrl: gdLogo,
+        iconSize: [24, 21],
+        // iconAnchor: [22, 94],
+        // popupAnchor: [-3, -76],
+        // shadowUrl: 'gatsby-icon.png',
+        // shadowSize: [68, 95],
+        // shadowAnchor: [22, 94]
+    });
+    const tooltipOptions = {
+        sticky: true,
+        permanent: true,
+        offset: L.point(6, 0),
+        direction: 'right'
+    }
+    Object.entries(locations).forEach(([name, {lat, lon}]) => {
+        const marker = L.marker([lat, lon], {icon}).addTo(map);
+        marker.bindTooltip(name, tooltipOptions).openTooltip();
+    });
+}
+
+export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
@@ -18,18 +41,18 @@ export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
     };
 
     // Initialize Windy API
-
     window.windyInit(options, windyAPI => {
         // windyAPI is ready, and contain 'map', 'store',
         // 'picker' and other useful stuff
 
-        const { map } = windyAPI;
+        const {map} = windyAPI;
         // .map is instance of Leaflet map
 
+        initLocations(window.L, map, locations);
 
         const myIcon = window.L.icon({
-            iconUrl: gatsbyIcon,
-            iconSize: [20, 20],
+            iconUrl: gdLogo,
+            iconSize: [24, 21],
             // iconAnchor: [22, 94],
             // popupAnchor: [-3, -76],
             // shadowUrl: 'gatsby-icon.png',
@@ -38,23 +61,19 @@ export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
         });
 
         // window.L.marker([50.5, 30.5]).bindTooltip('HiThere!').addTo(map);
-        const a = window.L.marker([60.5, 30.5]).addTo(map);
-        const b = window.L.marker([50.5, 30.5], {icon: myIcon}).addTo(map);
-
-
-
-        b.bindTooltip('this is b 🥇', {sticky:true, permanent: true}).openTooltip();
-        a.bindTooltip('this is a 🥇', {sticky:true, permanent: true}).openTooltip();
-
-
-
-
-
-
-
-
-
-
+        // const a = window.L.marker([60.5, 30.5]).addTo(map);
+        // const b = window.L.marker([50.5, 30.5], {icon: myIcon}).addTo(map);
+        //
+        //
+        // const tooltipOptions = {
+        //     sticky: true,
+        //     permanent: true,
+        //     offset: window.L.point(6, 0),
+        //     direction: 'right'
+        // }
+        //
+        // b.bindTooltip('🥇', tooltipOptions).openTooltip();
+        // a.bindTooltip('🥇', tooltipOptions).openTooltip();
 
 
         // a.bindPopup('hi there 2 !!!').openPopup();
@@ -76,6 +95,5 @@ export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
 
     return (<>
         <div id="windy"/>
-        <div id="windy2"/>
     </>);
 }
