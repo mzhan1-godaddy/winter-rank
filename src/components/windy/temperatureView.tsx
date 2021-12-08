@@ -21,7 +21,8 @@ function initLocations(L, map, locations) {
     }
     Object.entries(locations).forEach(([name, {lat, lon}]) => {
         const marker = L.marker([lat, lon], {icon}).addTo(map);
-        marker.bindTooltip(name, tooltipOptions).openTooltip();
+        marker.bindTooltip(name, tooltipOptions);
+            // .openTooltip();
     });
 }
 
@@ -54,6 +55,10 @@ export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overl
         initLocations(window.L, map, locations);
 
         map.panTo(new L.LatLng(lat, lon));
+
+        map.scrollWheelZoom.disable();
+
+
 
         const myIcon = window.L.icon({
             iconUrl: gdLogo,
