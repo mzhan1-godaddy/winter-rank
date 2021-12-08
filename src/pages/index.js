@@ -14,7 +14,7 @@ const IndexPage = () => {
             <p>Welcome to your new Gatsby site.</p>
             <p>Now go build something great.</p>
 
-            <TemperatureView/>
+            <TemperatureView lat={50} lon={14}/>
 
             <StaticImage
                 src="../images/gatsby-astronaut.png"

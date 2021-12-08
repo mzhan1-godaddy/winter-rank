@@ -1,6 +1,6 @@
 import React from 'react';
 import './temperatureView.scss';
-export function TemperatureView({}) {
+export function TemperatureView({lat, lon, zoom = 1, overlay = 'temp'}) {
 
     const options = {
         // Required: API key
@@ -10,10 +10,10 @@ export function TemperatureView({}) {
         verbose: true,
 
         // Optional: Initial state of the map
-        lat: 50.4,
-        lon: 14.3,
-        zoom: 5,
-        overlay: 'temp'
+        lat,
+        lon,
+        zoom,
+        overlay
     };
 
     // Initialize Windy API
@@ -27,13 +27,15 @@ export function TemperatureView({}) {
 
         window.L.popup()
             .setLatLng([50.4, 14.3])
-            .setContent('Hello World')
+            .setContent('1')
+            .openOn(map)
+
+        window.L.popup()
+            .setLatLng([14.4, 50.3])
+            .setContent('2')
             .openOn(map);
     });
 
 
-    return (<div>
-        hi
-        <div id="windy"/>
-    </div>);
+    return (<div id="windy"/>);
 }
