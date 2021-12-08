@@ -51,37 +51,37 @@ export function getAverage(data: PointForecast): WeatherData {
     };
 }
 
-export async function getTempSnowData(lat, lon): Promise<PointForecast> {
-    return get(
-        lat,
-        lon,
-        "gfs",
-        ["temp", "snowPrecip"],
-        ["surface"],
-        'BXBSHXdWiSLrrtRxkzwQNUb3vHMVwNUo'
-    );
-}
-
-export async function getLocationWeatherData(locations): Promise<LocationWeatherData[]> {
-    const entries = Object.entries(locations);
-    const promises = entries.map(([name, {lat, lon}]) => {
-        return getTempSnowData(lat, lon);
-    });
-
-    const datas: WeatherData[] = (await Promise.all(promises)).map((data: PointForecast) => {
-        return getAverage(normalizeData(data));
-    });
-
-    const ret = entries.map(([name, {lat, lon}], i) => {
-            return {
-                name,
-                lat,
-                lon,
-                ...datas[i]
-            };
-        }
-    );
-
-    console.log({ret});
-    return ret;
-}
+// export async function getTempSnowData(lat, lon): Promise<PointForecast> {
+//     return get(
+//         lat,
+//         lon,
+//         "gfs",
+//         ["temp", "snowPrecip"],
+//         ["surface"],
+//         'BXBSHXdWiSLrrtRxkzwQNUb3vHMVwNUo'
+//     );
+// }
+//
+// export async function getLocationWeatherData(locations): Promise<LocationWeatherData[]> {
+//     const entries = Object.entries(locations);
+//     const promises = entries.map(([name, {lat, lon}]) => {
+//         return getTempSnowData(lat, lon);
+//     });
+//
+//     const datas: WeatherData[] = (await Promise.all(promises)).map((data: PointForecast) => {
+//         return getAverage(normalizeData(data));
+//     });
+//
+//     const ret = entries.map(([name, {lat, lon}], i) => {
+//             return {
+//                 name,
+//                 lat,
+//                 lon,
+//                 ...datas[i]
+//             };
+//         }
+//     );
+//
+//     console.log({ret});
+//     return ret;
+// }

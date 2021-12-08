@@ -1,6 +1,6 @@
 import {LocationWeatherData} from "../services/windy";
 
-export const locations: LocationWeatherData[] = [
+export const locationWeatherData: LocationWeatherData[] = [
     {
         "name": "Amsterdam",
         "lat": 52.366862307465205,
@@ -282,3 +282,7 @@ export const locations: LocationWeatherData[] = [
         "snow": 0.0005999389629810493
     }
 ];
+
+export const orderedLocationWeatherData = [...locationWeatherData].sort((a, b)=>{
+    return b.snow - a.snow;
+});

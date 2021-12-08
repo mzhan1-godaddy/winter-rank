@@ -1,9 +1,8 @@
 import React from 'react';
 import './temperatureView.scss';
 import gdLogo from '../../images/gd-logo.png';
-import {locations} from '../../constants';
-import {get} from '@tsamantanis/node-windy-api';
-import {getAverage, getLocationWeatherData, normalizeData} from "../../services/windy";
+import {orderedLocationWeatherData} from '../../cache/12-08-21';
+import {LocationWeatherData} from "../../services/windy";
 
 async function getWindyData(lat, lon) {
 
@@ -25,8 +24,6 @@ async function getWindyData(lat, lon) {
     // console.log(test);
 }
 
-getWindyData(locations.Austin.lat, locations.Austin.lon).then();
-
 function getFeaturesInView(map) {
     const features = [];
     map.eachLayer( function(layer) {
@@ -39,7 +36,7 @@ function getFeaturesInView(map) {
     return features;
 }
 
-function initLocations(L, map, locations) {
+function initLocations(L, map, locations: LocationWeatherData[]) {
     const icon = L.icon({
         iconUrl: gdLogo,
         iconSize: [24, 21],
@@ -55,9 +52,9 @@ function initLocations(L, map, locations) {
         offset: L.point(6, 0),
         direction: 'right'
     }
-    Object.entries(locations).forEach(([name, {lat, lon}]) => {
+    locations.forEach(({lat, lon, name, temp, snow}) => {
         const marker = L.marker([lat, lon], {icon}).addTo(map);
-        marker.bindTooltip(name, tooltipOptions);
+        marker.bindTooltip(`${name} temp=${temp} snow=${snow}`, tooltipOptions);
             // .openTooltip();
     });
 }
@@ -88,7 +85,7 @@ export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overl
         const {map} = windyAPI;
         // .map is instance of Leaflet map
 
-        initLocations(window.L, map, locations);
+        initLocations(window.L, map, orderedLocationWeatherData);
 
         map.panTo(new L.LatLng(lat, lon));
 
