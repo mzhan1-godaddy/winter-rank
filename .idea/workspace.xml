@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48e3ae28-9e2d-4a8d-b372-bc57474fa279" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/windy/gatsby-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/windy/temperatureView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/temperatureView.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="48e3ae28-9e2d-4a8d-b372-bc57474fa279" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1638980023578</updated>
-      <workItem from="1638980030675" duration="5196000" />
+      <workItem from="1638980030675" duration="5352000" />
     </task>
     <task id="LOCAL-00001" summary="change to tsx">
       <created>1638984317494</created>
