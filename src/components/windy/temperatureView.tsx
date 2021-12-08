@@ -1,6 +1,6 @@
 import React from 'react';
 import './temperatureView.scss';
-export function TemperatureView() {
+export function TemperatureView({}) {
 
     const options = {
         // Required: API key
