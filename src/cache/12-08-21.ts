@@ -284,5 +284,14 @@ export const locationWeatherData: LocationWeatherData[] = [
 ];
 
 export const orderedLocationWeatherData = [...locationWeatherData].sort((a, b)=>{
+    if (a.snow === 0 && b.snow === 0) {
+        return b.temp - a.temp;
+    }
     return b.snow - a.snow;
 });
+
+
+export const hottestLocation = [...locationWeatherData].sort((a, b)=>{
+    return b.temp - a.temp;
+})[0];
+

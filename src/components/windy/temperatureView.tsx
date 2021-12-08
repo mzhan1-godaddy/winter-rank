@@ -1,11 +1,24 @@
 import React from 'react';
 import './temperatureView.scss';
 import gdLogo from '../../images/gd-logo.png';
-import {orderedLocationWeatherData} from '../../cache/12-08-21';
+import {hottestLocation, orderedLocationWeatherData} from '../../cache/12-08-21';
 import {LocationWeatherData} from "../../services/windy";
 
-async function getWindyData(lat, lon) {
+const DEFAULT_TOOLTIP_OPTIONS = {
+    sticky: false,
+    permanent: false,
+    offset: window.L.point(6, 0),
+    direction: 'right'
+}
 
+const STICKY_TOOLTIP_OPTIONS = {
+    sticky: true,
+    permanent: true,
+    offset: window.L.point(6, 0),
+    direction: 'right'
+}
+
+async function getWindyData(lat, lon) {
     // const res = await standard(49.809, 16.787, 'BXBSHXdWiSLrrtRxkzwQNUb3vHMVwNUo');
 
     // const data = await get(
@@ -26,14 +39,38 @@ async function getWindyData(lat, lon) {
 
 function getFeaturesInView(map) {
     const features = [];
-    map.eachLayer( function(layer) {
-        if(layer instanceof L.Marker) {
-            if(map.getBounds().contains(layer.getLatLng())) {
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.Marker) {
+            if (map.getBounds().contains(layer.getLatLng())) {
                 features.push(layer);
             }
         }
     });
     return features;
+}
+
+function addTooltip(marker, rank, data: LocationWeatherData) {
+    const str = `${data.name}`;
+    switch (rank) {
+        case 0:
+            marker.bindTooltip(`🥇 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+            break;
+        case 1:
+            marker.bindTooltip(`🥈 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+            break;
+        case 2:
+            marker.bindTooltip(`🥉 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+            break;
+        default:
+
+            if (hottestLocation.name === data.name) {
+                marker.bindTooltip(`🔥 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+            } else {
+                marker.bindTooltip(str, DEFAULT_TOOLTIP_OPTIONS);
+            }
+
+            break;
+    }
 }
 
 function initLocations(L, map, locations: LocationWeatherData[]) {
@@ -46,23 +83,16 @@ function initLocations(L, map, locations: LocationWeatherData[]) {
         // shadowSize: [68, 95],
         // shadowAnchor: [22, 94]
     });
-    const tooltipOptions = {
-        sticky: false,
-        permanent: false,
-        offset: L.point(6, 0),
-        direction: 'right'
-    }
-    locations.forEach(({lat, lon, name, temp, snow}) => {
-        const marker = L.marker([lat, lon], {icon}).addTo(map);
-        marker.bindTooltip(`${name} temp=${temp} snow=${snow}`, tooltipOptions);
-            // .openTooltip();
+    locations.forEach((data, i) => {
+        const marker = L.marker([data.lat, data.lon], {icon}).addTo(map);
+        addTooltip(marker, i, data);
     });
 }
 
 const START_LAT = 14.997985547591881;
 const START_LON = 18.700967459515446;
 
-export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overlay = 'temp'}) {
+export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, overlay = 'temp'}) {
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
@@ -92,7 +122,6 @@ export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overl
         // map.scrollWheelZoom.disable();
 
 
-
         const myIcon = window.L.icon({
             iconUrl: gdLogo,
             iconSize: [24, 21],
@@ -103,7 +132,7 @@ export function TemperatureView({lat= START_LAT, lon= START_LON, zoom = 1, overl
             // shadowAnchor: [22, 94]
         });
 
-        map.on('moveend', function(e) {
+        map.on('moveend', function (e) {
             // var bounds = map.getBounds();
             const visibleFeatures = getFeaturesInView(map);
             console.log({visibleFeatures});
