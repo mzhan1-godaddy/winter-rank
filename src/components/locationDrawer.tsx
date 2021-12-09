@@ -20,6 +20,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import AddIcon from '@mui/icons-material/Add';
 import {Fab} from "@mui/material";
 import './locationDrawer.scss';
+import {useLocationContext} from "../context/locationContext";
+import {useEffect} from "react";
 
 const drawerWidth = 600;
 
@@ -68,9 +70,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     justifyContent: 'flex-end',
 }));
 
-export function LocationDrawer({location}) {
+export function LocationDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const {values: {currentLocation}} = useLocationContext();
+
+    useEffect(()=>{
+        console.log({currentLocation}, 'mz current location change from drawer!');
+        setOpen(true);
+    },[currentLocation?.name])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -117,7 +125,7 @@ export function LocationDrawer({location}) {
                 open={open}
             >
                 <DrawerHeader>
-                    {location?.name}
+                    {currentLocation?.name}
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
