@@ -1,7 +1,7 @@
 import React from 'react';
 import './temperatureView.scss';
 import gdLogo from '../../images/gd-logo.png';
-import {hottestLocation, orderedLocationWeatherData} from '../../cache/12-08-21';
+import {hottestLocation, locationWeatherData, orderedLocationWeatherData} from '../../cache/12-08-21';
 import {LocationWeatherData} from "../../services/windy";
 
 const DEFAULT_TOOLTIP_OPTIONS = {
@@ -50,7 +50,7 @@ function getFeaturesInView(map) {
 }
 
 function addTooltip(marker, rank, data: LocationWeatherData) {
-    const str = `${data.name}`;
+    const str = `<b>${data.name}</b><div>${data.tempF.toFixed(2)}°F</div>`;
     switch (rank) {
         case 0:
             marker.bindTooltip(`🥇 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
@@ -92,7 +92,16 @@ function initLocations(L, map, locations: LocationWeatherData[]) {
 const START_LAT = 14.997985547591881;
 const START_LON = 18.700967459515446;
 
+function getF(data) {
+    const ret = data.map((entry)=>{
+        return {...entry, tempF: entry.temp * 9 / 5 + 32}
+    });
+    console.log({ret});
+    return ret;
+}
+
 export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, overlay = 'temp'}) {
+    getF(locationWeatherData);
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!

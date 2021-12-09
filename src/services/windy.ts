@@ -23,15 +23,13 @@ export interface Location {
 }
 
 export interface LocationWeatherData extends WeatherData, Location {
-
+    tempF: number;
 }
 
-
 export function normalizeData(data: PointForecast): PointForecast {
-    //convert from K to Celsius
-    // data['temp-surface'] = data['temp-surface'].map((temp) => (temp - 273.15).toFixed(2))
-    data['temp-surface'] = data['temp-surface'].map((temp) => (temp - 273.15));
-    data.units['temp-surface'] = 'C';
+    // convert from K to F
+    data['temp-surface'] = data['temp-surface'].map((temp) => ((temp - 273.15) * 9 / 5 + 32));
+    data.units['temp-surface'] = 'F';
     return data;
 }
 
@@ -85,3 +83,5 @@ export function getAverage(data: PointForecast): WeatherData {
 //     console.log({ret});
 //     return ret;
 // }
+
+
