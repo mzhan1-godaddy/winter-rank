@@ -21,7 +21,7 @@ import AddIcon from '@mui/icons-material/Add';
 import {Fab} from "@mui/material";
 import './locationDrawer.scss';
 
-const drawerWidth = 240;
+const drawerWidth = 600;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -99,8 +99,8 @@ export function LocationDrawer() {
             {/*        </Typography>*/}
             {/*    </Toolbar>*/}
             {/*</AppBar>*/}
-            <Fab className="fab" color="secondary" aria-label="add">
-                <MenuIcon onClick={handleDrawerOpen} />
+            <Fab size={'small'} className="fab" aria-label="menu" onClick={handleDrawerOpen}>
+                <MenuIcon />
             </Fab>
 
             <Drawer
