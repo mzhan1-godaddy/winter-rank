@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="48e3ae28-9e2d-4a8d-b372-bc57474fa279" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/windy/temperatureView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/temperatureView.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/windy/webcams.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/webcams.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/windy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/windy.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639077246935</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="wip">
+      <created>1639078694730</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1639078694730</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,8 +148,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change to tsx" />
-    <MESSAGE value="wip" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
 </project>

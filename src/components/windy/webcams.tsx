@@ -117,8 +117,6 @@ export function Webcams({location}: { location: LocationWeatherData }) {
         <div>
             {webcams && webcams.length > 0 && webcams.map((webcam: Webcam, i) => {
                 return <iframe
-                    allowFullScreen={false}
-                    allowfullscreen={false}
                     width="760" height="415"
                     name={`windy-webcam-timelapse-player-iframe-${i}`}
                     src={`${webcam.player.day.embed}?rel=0&autoplay=1`}
