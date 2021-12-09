@@ -19,7 +19,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AddIcon from '@mui/icons-material/Add';
 import {Fab, ListItemButton} from "@mui/material";
-import './locationDrawer.scss';
+import './rankingDrawer.scss';
 import {useLocationContext} from "../context/locationContext";
 import {useEffect} from "react";
 
@@ -70,7 +70,7 @@ const DrawerHeader = styled('div')(({theme}) => ({
     justifyContent: 'flex-end',
 }));
 
-export function LocationDrawer() {
+export function RankingDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const {locations, currentLocation, hottestLocation, setCurrentLocation} = useLocationContext();

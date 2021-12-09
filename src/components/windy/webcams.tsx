@@ -99,12 +99,12 @@ export function Webcams() {
     const {currentLocation} = useLocationContext();
     const [webcams, setWebcams] = useState([]);
     useEffect(() => {
-        if (location)
-            getImageUrl(location.lat, location.lon).then((res) => {
+        if (currentLocation)
+            getImageUrl(currentLocation.lat, currentLocation.lon).then((res) => {
                 console.log({res});
                 setWebcams(res.result.webcams);
             });
-    }, [location?.name])
+    }, [currentLocation?.name])
 
     // return (
     //     <iframe
@@ -117,10 +117,10 @@ export function Webcams() {
 
     return (
         <div>
-            {location && webcams && webcams.length=== 0 && <p>no webcams for {location.name}</p>}
+            {currentLocation && webcams && webcams.length=== 0 && <p>no webcams for {currentLocation.name}</p>}
             {webcams && webcams.length > 0 && webcams.map((webcam: Webcam, i) => {
                 return <iframe
-                    width="760" height="415"
+                    width="498" height="300"
                     name={`windy-webcam-timelapse-player-iframe-${i}`}
                     id={`windy-webcam-timelapse-player-iframe-${i}`}
                     key={`windy-webcam-timelapse-player-iframe-${i}`}

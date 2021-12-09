@@ -19,11 +19,12 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AddIcon from '@mui/icons-material/Add';
 import {Fab, ListItemButton} from "@mui/material";
-import './locationDrawer.scss';
+import './rankingDrawer.scss';
 import {useLocationContext} from "../context/locationContext";
 import {useEffect} from "react";
+import {Webcams} from "./windy/webcams";
 
-const drawerWidth = 300;
+const drawerWidth = 500;
 
 const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})(
     ({theme, open}) => ({
@@ -70,7 +71,7 @@ const DrawerHeader = styled('div')(({theme}) => ({
     justifyContent: 'flex-end',
 }));
 
-export function LocationDrawer() {
+export function LocationViewDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const {locations, currentLocation, hottestLocation, setCurrentLocation} = useLocationContext();
@@ -90,7 +91,12 @@ export function LocationDrawer() {
     };
 
     return (
-        <Box sx={{display: 'flex'}}>
+        <Box sx={{display: 'flex', 'flex-flow': 'row-reverse'}}>
+            <div className="fab-container">
+                <Fab size={'small'} className="fab" aria-label="menu" onClick={handleDrawerOpen}>
+                    <MenuIcon/>
+                </Fab>
+            </div>
             <CssBaseline/>
             {/*<AppBar position="fixed" open={open}>*/}
             {/*    <Toolbar>*/}
@@ -108,6 +114,8 @@ export function LocationDrawer() {
             {/*        </Typography>*/}
             {/*    </Toolbar>*/}
             {/*</AppBar>*/}
+
+
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -121,69 +129,22 @@ export function LocationDrawer() {
                 anchor="left"
                 open={open}
             >
+
                 <DrawerHeader>
                     <IconButton edge={'start'} onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </DrawerHeader>
                 <div className='rank-container'>
-                    <h1>❄️ GoDaddy Snowfall Ranking</h1>
+                    <h1>XD</h1>
 
-                    <List>
-                        {locations && locations.map((location, i) => {
-                            let itemProps;
-                            switch (i) {
-                                case 0:
-                                    itemProps = {
-                                        text: `${i+1}. ${location.name} 🥇`
-                                    };
-                                    break;
-                                case 1:
-                                    itemProps = {
-                                        text: `${i+1}. ${location.name} 🥈`
-                                    };
-                                    break;
-                                case 2:
-                                    itemProps = {
-                                        text: `${i+1}. ${location.name} 🥉`
-                                    };
-                                    break;
-                                default:
-                                    if (hottestLocation.name === location.name) {
-                                        itemProps = {
-                                            text: `${i+1}. ${location.name} 🔥`
-                                        };
-                                    } else {
-                                        itemProps = {
-                                            text: `${i+1}. ${location.name}`
-                                        };
-                                    }
-                                    break;
-                            }
-
-                            return <ListItemButton key={itemProps.text}
-                                                   selected={currentLocation?.name === location.name}
-                                                   onClick={(e)=>{setCurrentLocation(location)}}
-                                                   >
-                                {/*<ListItemIcon>*/}
-                                {/*    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
-                                {/*</ListItemIcon>*/}
-
-                                <ListItemText primary={itemProps.text}/>
-
-                            </ListItemButton>
-                        })}
-                    </List>
+                    <Webcams/>
                 </div>
             </Drawer>
             {/*<Main open={open}>*/}
             {/*<DrawerHeader />*/}
 
             {/*</Main>*/}
-
-            <Fab size={'small'} className="fab" aria-label="menu" onClick={handleDrawerOpen}>
-                <MenuIcon/>
-            </Fab>
         </Box>
     );
 }

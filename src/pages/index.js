@@ -1,13 +1,12 @@
 import * as React from "react"
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
 import {TemperatureView} from "../components/windy/temperatureView";
 import {Webcams} from "../components/windy/webcams";
 import {useState} from "react";
-import {LocationDrawer} from "../components/locationDrawer";
+import {RankingDrawer} from "../components/rankingDrawer";
 import {LocationContextProvider} from "../context/locationContext";
 import {hottestLocation, orderedLocationWeatherData} from "../cache/12-08-21";
+import {LocationViewDrawer} from "../components/locationViewDrawer";
 
 
 const IndexPage = () => {
@@ -23,7 +22,8 @@ const IndexPage = () => {
             locations={orderedLocationWeatherData}
             hottestLocation={hottestLocation}
         >
-            <LocationDrawer/>
+            <RankingDrawer/>
+            <LocationViewDrawer/>
             <TemperatureView onLocationChange={handleLocationChange}/>
 
         </LocationContextProvider>
