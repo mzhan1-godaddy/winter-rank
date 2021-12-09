@@ -72,6 +72,9 @@ const START_LAT = 14.997985547591881;
 const START_LON = 18.700967459515446;
 
 export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, overlay = 'temp', onLocationChange}) {
+
+    const [myMap, setMap] = useState(null);
+
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
@@ -87,6 +90,18 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
     };
 
     // const [layers, setLayers] = useState([]);
+    function selectLocation(location, e, map) {
+        console.log({location, myMap, e},'mzmz');
+        onLocationChange && onLocationChange(location);
+
+        // myMap && myMap.panTo([location.lat, location.lon]);
+        // myMap && myMap.panTo(new L.LatLng(0, 0));
+        // myMap && myMap.setZoom(8);
+
+        // myMap && myMap.setView([location.lat, location.lon]);
+        map.setView([location.lat, location.lon]);
+    }
+
 
     useEffect(() => {
         function initLocations(L, map, locations: LocationWeatherData[]) {
@@ -112,10 +127,10 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
                 const marker = L.marker([data.lat, data.lon], markerOptions).addTo(map);
                 addTooltip(marker, i, data);
 
-
                 // marker.bindPopup(getPopupContent, popUpOptions);
-                marker.on('click', function() {
-                    onLocationChange && onLocationChange(data);
+                marker.on('click', function(e) {
+                    selectLocation(data, e, map);
+                    // map.setView(e.target.getLatLng(), 10);
                 });
             });
         }
@@ -127,10 +142,12 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
 
             const {map} = windyAPI;
             // .map is instance of Leaflet map
+            setMap(map);
+            console.log({map},'mz original map');
 
             initLocations(window.L, map, orderedLocationWeatherData);
 
-            map.panTo(new L.LatLng(lat, lon));
+            map.panTo(new L.LatLng(0, 0));
 
             // map.scrollWheelZoom.disable();
 
@@ -143,19 +160,6 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
                 // shadowUrl: 'gatsby-icon.png',
                 // shadowSize: [68, 95],
                 // shadowAnchor: [22, 94]
-            });
-
-            map.on('moveend', function (e) {
-                // var bounds = map.getBounds();
-                const visibleFeatures = getFeaturesInView(map);
-                console.log({visibleFeatures});
-                visibleFeatures.forEach((feature) => {
-                    // const tooltip = feature.getTooltip();
-                    // console.log({tooltip});
-                    // map.openTooltip(tooltip);
-                    // if(!feature.tooltip)
-                    // feature.closeTooltip();
-                });
             });
 
             // window.L.popup()

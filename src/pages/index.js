@@ -21,7 +21,7 @@ const IndexPage = () => {
             <Seo title="Home"/>
             <TemperatureView onLocationChange={handleLocationChange}/>
             <Webcams location={location}/>
-            <LocationDrawer/>
+            <LocationDrawer location={location}/>
         </Layout>
     )
 }
