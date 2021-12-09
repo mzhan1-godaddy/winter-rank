@@ -26,6 +26,22 @@ export interface LocationWeatherData extends WeatherData, Location {
     tempF: number;
 }
 
+
+export interface Layer {
+    addTo();
+
+    openTooltip(latlng?);
+
+    closeTooltip();
+
+    /** Returns true if the tooltip bound to this layer is currently open.*/
+    isTooltipOpen(): boolean;
+
+    /** Sets the content of the tooltip bound to this layer.*/
+    setTooltipContent(content);
+    getTooltip();
+}
+
 export function normalizeData(data: PointForecast): PointForecast {
     // convert from K to F
     data['temp-surface'] = data['temp-surface'].map((temp) => ((temp - 273.15) * 9 / 5 + 32));
@@ -74,6 +90,7 @@ export function getAverage(data: PointForecast): WeatherData {
 //             return {
 //                 name,
 //                 lat,
+
 //                 lon,
 //                 ...datas[i]
 //             };
