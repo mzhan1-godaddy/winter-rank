@@ -1,12 +1,12 @@
 import * as React from "react"
-import {Link} from "gatsby"
-import {StaticImage} from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import {TemperatureView} from "../components/windy/temperatureView";
 import {Webcams} from "../components/windy/webcams";
 import {useState} from "react";
+import {LocationDrawer} from "../components/locationDrawer";
+
 
 const IndexPage = () => {
     const [location, setLocation] = useState(null);
@@ -21,6 +21,7 @@ const IndexPage = () => {
             <Seo title="Home"/>
             <TemperatureView onLocationChange={handleLocationChange}/>
             <Webcams location={location}/>
+            <LocationDrawer/>
         </Layout>
     )
 }
