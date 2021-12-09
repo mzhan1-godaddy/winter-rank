@@ -6,7 +6,7 @@ import {LocationWeatherData} from "../../services/windy";
 
 const DEFAULT_TOOLTIP_OPTIONS = {
     sticky: false,
-    permanent: true,
+    permanent: false,
     offset: window.L.point(6, 0),
     direction: 'right'
 }
@@ -48,7 +48,7 @@ function addTooltip(marker, rank, data: LocationWeatherData) {
                 marker.bindTooltip(`🔥 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
             } else {
                 marker.bindTooltip(str, DEFAULT_TOOLTIP_OPTIONS);
-                marker.closeTooltip();
+                // marker.closeTooltip();
             }
 
             break;
@@ -56,7 +56,6 @@ function addTooltip(marker, rank, data: LocationWeatherData) {
 }
 
 function initLocations(L, map, locations: LocationWeatherData[]) {
-
     const icon = L.icon({
         iconUrl: gdLogo,
         iconSize: [24, 21],
@@ -71,9 +70,19 @@ function initLocations(L, map, locations: LocationWeatherData[]) {
         icon,
         riseOnHover: true
     };
+
+    const popUpOptions = {
+        minWidth: 400
+    };
     locations.forEach((data, i) => {
         const marker = L.marker([data.lat, data.lon], markerOptions).addTo(map);
         addTooltip(marker, i, data);
+
+
+            marker.bindPopup(()=>(`<img src="https://images-webcams.windy.com/77/1329413077/current/preview/1329413077.jpg"/>`), popUpOptions);
+        // marker.on('click', function() {
+        //
+        // });
     });
 }
 
@@ -132,7 +141,7 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
                     // console.log({tooltip});
                     // map.openTooltip(tooltip);
                     // if(!feature.tooltip)
-                    feature.closeTooltip();
+                    // feature.closeTooltip();
                 });
             });
 

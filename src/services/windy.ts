@@ -40,6 +40,9 @@ export interface Layer {
     /** Sets the content of the tooltip bound to this layer.*/
     setTooltipContent(content);
     getTooltip();
+
+
+    bindPopup(content, options);
 }
 
 export function normalizeData(data: PointForecast): PointForecast {
