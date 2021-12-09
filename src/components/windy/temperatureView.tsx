@@ -138,26 +138,6 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
             console.log({visibleFeatures});
         });
 
-        // window.L.marker([50.5, 30.5]).bindTooltip('HiThere!').addTo(map);
-        // const a = window.L.marker([60.5, 30.5]).addTo(map);
-        // const b = window.L.marker([50.5, 30.5], {icon: myIcon}).addTo(map);
-        //
-        //
-        // const tooltipOptions = {
-        //     sticky: true,
-        //     permanent: true,
-        //     offset: window.L.point(6, 0),
-        //     direction: 'right'
-        // }
-        //
-        // b.bindTooltip('🥇', tooltipOptions).openTooltip();
-        // a.bindTooltip('🥇', tooltipOptions).openTooltip();
-
-
-        // a.bindPopup('hi there 2 !!!').openPopup();
-        // window.L.marker([50.5, 30.5]).addTo(map).bindPopup('hi there !!!!').openPopup({autoClose: false});
-
-
         // window.L.popup()
         //     .setLatLng([50.4, 14.3])
         //     .setContent('1')
@@ -171,7 +151,7 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
     });
 
 
-    return (<>
+    return (
         <div id="windy"/>
-    </>);
+    );
 }
