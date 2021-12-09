@@ -82,7 +82,7 @@ export async function getImageUrl(lat, lon): Promise<any> {
         }
     }
     const data = await fetch(path, options)
-    console.log({data},'mzmz');
+    console.log({data}, 'mzmz');
     return data.json();
 }
 
@@ -122,4 +122,82 @@ export async function getImageUrl(lat, lon): Promise<any> {
 //     return ret;
 // }
 
+export interface WebcamImage {
+    current: {
+        icon: string;
+        thumbnail: string;
+        preview: string;
+        toenail: string;
+    }
+    sizes: {
+        icon: { width: number, height: number };
+        thumbnail: { width: number, height: number };
+        preview: { width: number, height: number };
+        toenail: { width: number, height: number };
+    };
+    daylight: {
+        icon: string;
+        thumbnail: string;
+        preview: string;
+        toenail: string;
+    }
+    update: number
+}
 
+export interface Webcam {
+    id: string;
+    status: 'active';
+    title: string;
+    image: WebcamImage;
+    "location": {
+        "city": "Burmantofts",
+        "region": "England",
+        "region_code": "GB.ENG",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "continent": "Europe",
+        "continent_code": "EU",
+        "latitude": 53.796343,
+        "longitude": -1.546612,
+        "timezone": "Europe/London",
+        "wikipedia": "https://en.wikipedia.org/wiki/Burmantofts"
+    }
+    "player": {
+        "live": {
+            "available": false,
+            "embed": ""
+        },
+        "day": {
+            "available": true,
+            "link": "https://www.windy.com/webcams/1576526006",
+            "embed": "https://webcams.windy.com/webcams/public/embed/player/1576526006/day"
+        },
+        "month": {
+            "available": true,
+            "link": "https://www.windy.com/webcams/1576526006",
+            "embed": "https://webcams.windy.com/webcams/public/embed/player/1576526006/month"
+        },
+        "year": {
+            "available": true,
+            "link": "https://www.windy.com/webcams/1576526006",
+            "embed": "https://webcams.windy.com/webcams/public/embed/player/1576526006/year"
+        },
+        "lifetime": {
+            "available": true,
+            "link": "https://www.windy.com/webcams/1576526006",
+            "embed": "https://webcams.windy.com/webcams/public/embed/player/1576526006/lifetime"
+        }
+    },
+}
+
+export interface WebcamsResponseResult {
+    offset: number;
+    limit: number;
+    total: number;
+    webcams: Webcam[];
+}
+
+export interface WebcamsResponse {
+    status: string;
+    result: WebcamsResponseResult;
+}
