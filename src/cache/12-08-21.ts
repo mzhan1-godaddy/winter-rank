@@ -325,7 +325,7 @@ export const locationWeatherData: LocationWeatherData[] = [
 
 export const orderedLocationWeatherData = [...locationWeatherData].sort((a, b)=>{
     if (a.snow === 0 && b.snow === 0) {
-        return b.temp - a.temp;
+        return a.temp - b.temp;
     }
     return b.snow - a.snow;
 });

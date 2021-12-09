@@ -7,7 +7,7 @@ import {useLocationContext} from "../../context/locationContext";
 
 export function useWindyMap() {
 
-    const {setCurrentLocation} = useLocationContext();
+    const {currentLocation, setCurrentLocation} = useLocationContext();
 
     const DEFAULT_TOOLTIP_OPTIONS = {
         sticky: false,
@@ -105,7 +105,7 @@ export function useWindyMap() {
 
         // myMap && myMap.setView([location.lat, location.lon]);
         // map.setView([location.lat, location.lon-55]);
-        map.setView([location.lat, location.lon]);
+        map && map.setView([location.lat, location.lon]);
         setCurrentLocation(location);
     }
 
@@ -144,6 +144,7 @@ export function useWindyMap() {
     const [map, setMap] = useState(null);
 
     useEffect(() => {
+        // Initialize Windy API
         window.windyInit(options, windyAPI => {
             // windyAPI is ready, and contain 'map', 'store',
             // 'picker' and other useful stuff
@@ -157,7 +158,13 @@ export function useWindyMap() {
             // map.panTo(new L.LatLng(0, 0))
         });
     }, []);
-    // Initialize Windy API
+
+    useEffect(() => {
+        if (currentLocation) {
+            console.log({currentLocation, map}, 'mz current location change in useWinndyMap');
+            selectLocation(currentLocation, {}, map);
+        }
+    }, [currentLocation?.name]);
 
 
     return {

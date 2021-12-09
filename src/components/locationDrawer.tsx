@@ -18,12 +18,12 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AddIcon from '@mui/icons-material/Add';
-import {Fab} from "@mui/material";
+import {Fab, ListItemButton} from "@mui/material";
 import './locationDrawer.scss';
 import {useLocationContext} from "../context/locationContext";
 import {useEffect} from "react";
 
-const drawerWidth = 600;
+const drawerWidth = 300;
 
 const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})(
     ({theme, open}) => ({
@@ -73,7 +73,7 @@ const DrawerHeader = styled('div')(({theme}) => ({
 export function LocationDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const {currentLocation} = useLocationContext();
+    const {locations, currentLocation, hottestLocation, setCurrentLocation} = useLocationContext();
 
     useEffect(() => {
         console.log({currentLocation}, 'mz current location change from drawer!');
@@ -122,37 +122,63 @@ export function LocationDrawer() {
                     },
                 }}
                 variant="persistent"
-                anchor="left"
+                anchor="right"
                 open={open}
             >
                 <DrawerHeader>
-                    {currentLocation?.name}
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                    <IconButton edge={'start'} onClick={handleDrawerClose}>
+                        {theme.direction === 'rtl' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </DrawerHeader>
-                <Divider/>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
-                            </ListItemIcon>
-                            <ListItemText primary={text}/>
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider/>
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
-                            </ListItemIcon>
-                            <ListItemText primary={text}/>
-                        </ListItem>
-                    ))}
-                </List>
+                <div className='rank-container'>
+                    <h1>❄️ GoDaddy Snowfall Ranking</h1>
+
+                    <List>
+                        {locations && locations.map((location, i) => {
+                            let itemProps;
+                            switch (i) {
+                                case 0:
+                                    itemProps = {
+                                        text: `🥇 ${location.name}`
+                                    };
+                                    break;
+                                case 1:
+                                    itemProps = {
+                                        text: `🥈 ${location.name}`
+                                    };
+                                    break;
+                                case 2:
+                                    itemProps = {
+                                        text: `🥉 ${location.name}`
+                                    };
+                                    break;
+                                default:
+                                    if (hottestLocation.name === location.name) {
+                                        itemProps = {
+                                            text: `🔥 ${location.name}`
+                                        };
+                                    } else {
+                                        itemProps = {
+                                            text: `${location.name}`
+                                        };
+                                    }
+                                    break;
+                            }
+
+                            return <ListItemButton key={itemProps.text}
+                                                   selected={currentLocation?.name === location.name}
+                                                   onClick={()=>{setCurrentLocation(location)}}
+                                                   >
+                                {/*<ListItemIcon>*/}
+                                {/*    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
+                                {/*</ListItemIcon>*/}
+
+                                <ListItemText primary={itemProps.text}/>
+
+                            </ListItemButton>
+                        })}
+                    </List>
+                </div>
             </Drawer>
             {/*<Main open={open}>*/}
             {/*<DrawerHeader />*/}
