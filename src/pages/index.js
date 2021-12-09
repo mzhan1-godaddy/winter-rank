@@ -23,9 +23,8 @@ const IndexPage = () => {
             locations={orderedLocationWeatherData}
             hottestLocation={hottestLocation}
         >
-            <Seo title="Home"/>
             <TemperatureView onLocationChange={handleLocationChange}/>
-            <Webcams location={location}/>
+            <Webcams/>
             <LocationDrawer/>
         </LocationContextProvider>
     )

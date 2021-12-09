@@ -1,5 +1,6 @@
 import {getImageUrl, LocationWeatherData, Webcam, WebcamsResponse} from "../../services/windy";
 import React, {useEffect, useState} from 'react';
+import {useLocationContext} from "../../context/locationContext";
 
 const res: WebcamsResponse = {
     "status": "OK",
@@ -92,9 +93,10 @@ const res: WebcamsResponse = {
     }
 };
 
-export function Webcams({location}: { location: LocationWeatherData }) {
-    //style="background-image: url(https://images-webcams.windy.com/06/1576526006/current/preview/1576526006.jpg)"
+export function Webcams() {
 
+    //style="background-image: url(https://images-webcams.windy.com/06/1576526006/current/preview/1576526006.jpg)"
+    const {currentLocation} = useLocationContext();
     const [webcams, setWebcams] = useState([]);
     useEffect(() => {
         if (location)

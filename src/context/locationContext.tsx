@@ -27,14 +27,10 @@ export function LocationContextProvider(
     }
 
     const providerValue = {
-        values: {
-            currentLocation: _currentLocation,
-            locations: _locations,
-            hottestLocation
-        },
-        actions: {
-            setCurrentLocation
-        }
+        currentLocation: _currentLocation,
+        locations: _locations,
+        hottestLocation,
+        setCurrentLocation
     };
 
     return <LocationContext.Provider value={providerValue}>

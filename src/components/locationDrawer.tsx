@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -25,8 +25,8 @@ import {useEffect} from "react";
 
 const drawerWidth = 600;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
+const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})(
+    ({theme, open}) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
@@ -46,7 +46,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+})(({theme, open}) => ({
     transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -61,7 +61,7 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
+const DrawerHeader = styled('div')(({theme}) => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
@@ -73,12 +73,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export function LocationDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const {values: {currentLocation}} = useLocationContext();
+    const {currentLocation} = useLocationContext();
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log({currentLocation}, 'mz current location change from drawer!');
-        setOpen(true);
-    },[currentLocation?.name])
+        if (currentLocation)
+            setOpen(true);
+    }, [currentLocation?.name])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -89,8 +90,8 @@ export function LocationDrawer() {
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
+        <Box sx={{display: 'flex'}}>
+            <CssBaseline/>
             {/*<AppBar position="fixed" open={open}>*/}
             {/*    <Toolbar>*/}
             {/*        <IconButton*/}
@@ -108,7 +109,7 @@ export function LocationDrawer() {
             {/*    </Toolbar>*/}
             {/*</AppBar>*/}
             <Fab size={'small'} className="fab" aria-label="menu" onClick={handleDrawerOpen}>
-                <MenuIcon />
+                <MenuIcon/>
             </Fab>
 
             <Drawer
@@ -127,34 +128,34 @@ export function LocationDrawer() {
                 <DrawerHeader>
                     {currentLocation?.name}
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </DrawerHeader>
-                <Divider />
+                <Divider/>
                 <List>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
             {/*<Main open={open}>*/}
-                {/*<DrawerHeader />*/}
+            {/*<DrawerHeader />*/}
 
             {/*</Main>*/}
         </Box>

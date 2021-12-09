@@ -7,7 +7,7 @@ import {useLocationContext} from "../../context/locationContext";
 
 export function useWindyMap() {
 
-    const {actions} = useLocationContext();
+    const {setCurrentLocation} = useLocationContext();
 
     const DEFAULT_TOOLTIP_OPTIONS = {
         sticky: false,
@@ -104,8 +104,9 @@ export function useWindyMap() {
         // myMap && myMap.setZoom(8);
 
         // myMap && myMap.setView([location.lat, location.lon]);
+        // map.setView([location.lat, location.lon-55]);
         map.setView([location.lat, location.lon]);
-        actions.setCurrentLocation(location);
+        setCurrentLocation(location);
     }
 
 
