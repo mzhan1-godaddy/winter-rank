@@ -12,6 +12,12 @@
   display: none !important;
 }
 
+#windy #embed-zoom .zoom-ctrl  {
+  &.zoom-plus {
+    margin-top: 20px;
+  }
+}
+
 #windy #logo-wrapper {
   display: none !important;
   //top: initial;

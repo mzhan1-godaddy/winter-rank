@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48e3ae28-9e2d-4a8d-b372-bc57474fa279" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/locationViewDrawer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/locationDrawer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/locationDrawer.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/locationDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/locationDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/windy/useWindyMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/useWindyMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/windy/temperatureView.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/temperatureView.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +36,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="TypeScript JSX&#10;JSON&#10;TEXT" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/windy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -44,6 +47,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/components/windy" />
     </key>
   </component>
@@ -204,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639089011682</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="wip">
+      <created>1639089521580</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1639089521580</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

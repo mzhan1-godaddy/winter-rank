@@ -90,12 +90,7 @@ export function LocationDrawer() {
     };
 
     return (
-        <Box sx={{display: 'flex', 'flex-flow': 'row-reverse'}}>
-            <div className="fab-container">
-            <Fab size={'small'} className="fab" aria-label="menu" onClick={handleDrawerOpen}>
-                <MenuIcon/>
-            </Fab>
-            </div>
+        <Box sx={{display: 'flex'}}>
             <CssBaseline/>
             {/*<AppBar position="fixed" open={open}>*/}
             {/*    <Toolbar>*/}
@@ -113,8 +108,6 @@ export function LocationDrawer() {
             {/*        </Typography>*/}
             {/*    </Toolbar>*/}
             {/*</AppBar>*/}
-
-
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -125,13 +118,12 @@ export function LocationDrawer() {
                     },
                 }}
                 variant="persistent"
-                anchor="right"
+                anchor="left"
                 open={open}
             >
-
                 <DrawerHeader>
                     <IconButton edge={'start'} onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </DrawerHeader>
                 <div className='rank-container'>
@@ -188,6 +180,10 @@ export function LocationDrawer() {
             {/*<DrawerHeader />*/}
 
             {/*</Main>*/}
+
+            <Fab size={'small'} className="fab" aria-label="menu" onClick={handleDrawerOpen}>
+                <MenuIcon/>
+            </Fab>
         </Box>
     );
 }

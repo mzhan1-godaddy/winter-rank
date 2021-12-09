@@ -1,12 +1,16 @@
 .fab {
   margin: 0px;
-  //top: auto;
-  top: 20px;
-  //bottom: 20px;
+  top: 10px;
+  bottom: auto;
   left: auto;
-  right: 20px;
+  right: 10px;
   position: fixed;
 };
+
+.fab-container {
+  position: fixed;
+  z-index: 1;
+}
 
 .rank-container {
   text-align: center;

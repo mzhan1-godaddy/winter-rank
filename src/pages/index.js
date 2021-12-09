@@ -23,9 +23,9 @@ const IndexPage = () => {
             locations={orderedLocationWeatherData}
             hottestLocation={hottestLocation}
         >
-            <TemperatureView onLocationChange={handleLocationChange}/>
-            <Webcams/>
             <LocationDrawer/>
+            <TemperatureView onLocationChange={handleLocationChange}/>
+
         </LocationContextProvider>
     )
 }
