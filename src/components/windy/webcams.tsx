@@ -1,5 +1,5 @@
 import {WebcamsResponse} from "../../services/windy";
-
+import React from 'react';
 
 const res: WebcamsResponse = {
     "status": "OK",
@@ -86,17 +86,6 @@ const res: WebcamsResponse = {
                 },
                 "statistics": {
                     "views": 51087
-                },
-                "url": {
-                    "current": {
-                        "desktop": "https://www.windy.com/webcams/1576526006",
-                        "mobile": "https://www.windy.com/webcams/1576526006"
-                    },
-                    "edit": "https://www.windy.com/webcams/1576526006",
-                    "daylight": {
-                        "desktop": "https://www.windy.com/webcams/1576526006",
-                        "mobile": "https://www.windy.com/webcams/1576526006"
-                    }
                 }
             }
         ]
@@ -104,5 +93,9 @@ const res: WebcamsResponse = {
 };
 
 export function Webcams () {
-
+    //style="background-image: url(https://images-webcams.windy.com/06/1576526006/current/preview/1576526006.jpg)"
+    return (
+        <iframe allowfullscreen="false" name="windy-webcam-timelapse-player-iframe" src="https://webcams.windy.com/webcams/public/embed/player/1576526006/day?autoplay=1" allow='autoplay'></iframe>
+        // <a href={res.result.webcams[0].player.day.embed} title="Burmantofts: Park Plaza Leeds" target="_blank" ></a>
+    );
 }

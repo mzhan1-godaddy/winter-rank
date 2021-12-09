@@ -89,12 +89,6 @@ function initLocations(L, map, locations: LocationWeatherData[]) {
     locations.forEach((data, i) => {
         const marker = L.marker([data.lat, data.lon], markerOptions).addTo(map);
         addTooltip(marker, i, data);
-
-
-        marker.bindPopup(getPopupContent, popUpOptions);
-        // marker.on('click', function() {
-        //
-        // });
     });
 }
 

@@ -188,6 +188,9 @@ export interface Webcam {
             "embed": "https://webcams.windy.com/webcams/public/embed/player/1576526006/lifetime"
         }
     },
+    "statistics": {
+        "views": 51087
+    },
 }
 
 export interface WebcamsResponseResult {
