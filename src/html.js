@@ -18,8 +18,6 @@ export default function HTML(props) {
           />
           <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
           <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
-
-
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
@@ -29,6 +27,7 @@ export default function HTML(props) {
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
+        <a name="windy-webcam-nearby-widget" data-params='{"lat":"53.7963435","lon":"-1.5466116"}'></a><script async type="text/javascript" src="https://webcams.windy.com/webcams/public/widget/script/nearby.js"></script>
         {props.postBodyComponents}
       </body>
     </html>

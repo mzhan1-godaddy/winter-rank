@@ -11,6 +11,7 @@ const IndexPage = () => {
         <Layout>
             <Seo title="Home"/>
             <TemperatureView/>
+
         </Layout>
     )
 }

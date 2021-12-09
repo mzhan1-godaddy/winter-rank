@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './temperatureView.scss';
 import gdLogo from '../../images/gd-logo.png';
 import {hottestLocation, locationWeatherData, orderedLocationWeatherData} from '../../cache/12-08-21';
-import {LocationWeatherData} from "../../services/windy";
+import {getImageUrl, Layer, LocationWeatherData} from "../../services/windy";
 
 const DEFAULT_TOOLTIP_OPTIONS = {
     sticky: false,
@@ -55,6 +55,18 @@ function addTooltip(marker, rank, data: LocationWeatherData) {
     }
 }
 
+ function getPopupContent(layer: Layer) {
+    const {lat, lng} = layer.getLatLng();
+    console.log({layer, lat, lng});
+    // const imageUrl = await getImageUrl(lat, lng);
+    // return `<img src="https://images-webcams.windy.com/77/1329413077/current/preview/1329413077.jpg"/>`;
+    // return `<video src="https://webcams.windy.com/webcams/public/embed/player/1576526006/year"/>`;
+    // return `<a name="windy-webcam-timelapse-player" data-id="1576526006" data-play="day" href="https://windy.com/webcams/1576526006" target="_blank">Burmantofts: Park Plaza Leeds</a>`;
+
+    // return `<iframe allowfullscreen="false" name="windy-webcam-timelapse-player-iframe" src="https://webcams.windy.com/webcams/public/embed/player/1576526006/day?autoplay=1" allow='autoplay'></iframe>`
+     return `<a name="windy-webcam-nearby-widget" data-params='{"lat":"53.7963435","lon":"-1.5466116"}'></a><script async type="text/javascript" src="https://webcams.windy.com/webcams/public/widget/script/nearby.js"></script>`
+}
+
 function initLocations(L, map, locations: LocationWeatherData[]) {
     const icon = L.icon({
         iconUrl: gdLogo,
@@ -79,7 +91,7 @@ function initLocations(L, map, locations: LocationWeatherData[]) {
         addTooltip(marker, i, data);
 
 
-            marker.bindPopup(()=>(`<img src="https://images-webcams.windy.com/77/1329413077/current/preview/1329413077.jpg"/>`), popUpOptions);
+        marker.bindPopup(getPopupContent, popUpOptions);
         // marker.on('click', function() {
         //
         // });
@@ -95,7 +107,7 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
 
         // Put additional console output
-        verbose: true,
+        // verbose: true,
 
         // Optional: Initial state of the map
         lat,
@@ -136,7 +148,7 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
                 // var bounds = map.getBounds();
                 const visibleFeatures = getFeaturesInView(map);
                 console.log({visibleFeatures});
-                visibleFeatures.forEach((feature)=>{
+                visibleFeatures.forEach((feature) => {
                     // const tooltip = feature.getTooltip();
                     // console.log({tooltip});
                     // map.openTooltip(tooltip);
@@ -156,9 +168,7 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
             //     .openOn(map);
 
         });
-    },[]);
-
-
+    }, []);
 
 
     return (

@@ -1,5 +1,7 @@
 import {get} from '@tsamantanis/node-windy-api';
 
+const fetch = require("node-fetch");
+
 export interface PointForecast {
     'past3hsnowprecip-surface': number[];
     'temp-surface': number[];
@@ -39,10 +41,13 @@ export interface Layer {
 
     /** Sets the content of the tooltip bound to this layer.*/
     setTooltipContent(content);
+
     getTooltip();
 
 
     bindPopup(content, options);
+
+    getLatLng();
 }
 
 export function normalizeData(data: PointForecast): PointForecast {
@@ -66,6 +71,19 @@ export function getAverage(data: PointForecast): WeatherData {
         temp: tempAverage,
         snow: snowPrecipAverage
     };
+}
+
+export async function getImageUrl(lat, lon): Promise<any> {
+    const path = `https://api.windy.com/api/webcams/v2/list/nearby=${lat},${lon}?show=webcams:image`
+    const options = {
+        method: "get",
+        headers: {
+            "x-windy-key": "FTOriVlg1ifb8cP0QDXf6yuq91t0ef5j"
+        }
+    }
+    const data = await fetch(path, options)
+    console.log({data},'mzmz');
+    return data.json();
 }
 
 // export async function getTempSnowData(lat, lon): Promise<PointForecast> {
