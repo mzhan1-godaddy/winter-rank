@@ -92,16 +92,7 @@ function initLocations(L, map, locations: LocationWeatherData[]) {
 const START_LAT = 14.997985547591881;
 const START_LON = 18.700967459515446;
 
-function getF(data) {
-    const ret = data.map((entry)=>{
-        return {...entry, tempF: entry.temp * 9 / 5 + 32}
-    });
-    console.log({ret});
-    return ret;
-}
-
 export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, overlay = 'temp'}) {
-    getF(locationWeatherData);
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
