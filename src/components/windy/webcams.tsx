@@ -1,5 +1,5 @@
-import {WebcamsResponse} from "../../services/windy";
-import React from 'react';
+import {getImageUrl, LocationWeatherData, Webcam, WebcamsResponse} from "../../services/windy";
+import React, {useEffect, useState} from 'react';
 
 const res: WebcamsResponse = {
     "status": "OK",
@@ -92,10 +92,40 @@ const res: WebcamsResponse = {
     }
 };
 
-export function Webcams () {
+export function Webcams({location}: { location: LocationWeatherData }) {
     //style="background-image: url(https://images-webcams.windy.com/06/1576526006/current/preview/1576526006.jpg)"
+
+    const [webcams, setWebcams] = useState([]);
+    useEffect(() => {
+        if (location)
+            getImageUrl(location.lat, location.lon).then((res) => {
+                console.log({res});
+                setWebcams(res.result.webcams);
+            });
+    }, [location?.name])
+
+    // return (
+    //     <iframe
+    //         allowfullscreen={false}
+    //         name="windy-webcam-timelapse-player-iframe"
+    //         src="https://webcams.windy.com/webcams/public/embed/player/1576526006/day?autoplay=1"
+    //         allow='autoplay'>
+    //     </iframe>
+    // );
+
     return (
-        <iframe allowfullscreen="false" name="windy-webcam-timelapse-player-iframe" src="https://webcams.windy.com/webcams/public/embed/player/1576526006/day?autoplay=1" allow='autoplay'></iframe>
-        // <a href={res.result.webcams[0].player.day.embed} title="Burmantofts: Park Plaza Leeds" target="_blank" ></a>
-    );
+        <div>
+            {webcams && webcams.length > 0 && webcams.map((webcam: Webcam, i) => {
+                return <iframe
+                    allowFullScreen={false}
+                    allowfullscreen={false}
+                    width="760" height="415"
+                    name={`windy-webcam-timelapse-player-iframe-${i}`}
+                    src={`${webcam.player.day.embed}?rel=0&autoplay=1`}
+                    allow={'autoplay'}
+                >
+                </iframe>
+            })}
+        </div>
+    )
 }

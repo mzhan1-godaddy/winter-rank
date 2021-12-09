@@ -67,35 +67,11 @@ function addTooltip(marker, rank, data: LocationWeatherData) {
      return `<a name="windy-webcam-nearby-widget" data-params='{"lat":"53.7963435","lon":"-1.5466116"}'></a><script async type="text/javascript" src="https://webcams.windy.com/webcams/public/widget/script/nearby.js"></script>`
 }
 
-function initLocations(L, map, locations: LocationWeatherData[]) {
-    const icon = L.icon({
-        iconUrl: gdLogo,
-        iconSize: [24, 21],
-        // iconAnchor: [22, 94],
-        // popupAnchor: [-3, -76],
-        // shadowUrl: 'gatsby-icon.png',
-        // shadowSize: [68, 95],
-        // shadowAnchor: [22, 94]
-    });
-
-    const markerOptions = {
-        icon,
-        riseOnHover: true
-    };
-
-    const popUpOptions = {
-        minWidth: 400
-    };
-    locations.forEach((data, i) => {
-        const marker = L.marker([data.lat, data.lon], markerOptions).addTo(map);
-        addTooltip(marker, i, data);
-    });
-}
 
 const START_LAT = 14.997985547591881;
 const START_LON = 18.700967459515446;
 
-export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, overlay = 'temp'}) {
+export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, overlay = 'temp', onLocationChange}) {
     const options = {
         // Required: API key
         key: '8OGZ5CI3B4mtrOceYu3YqAHs60bgg81e', // REPLACE WITH YOUR KEY !!!
@@ -113,6 +89,37 @@ export function TemperatureView({lat = START_LAT, lon = START_LON, zoom = 1, ove
     // const [layers, setLayers] = useState([]);
 
     useEffect(() => {
+        function initLocations(L, map, locations: LocationWeatherData[]) {
+            const icon = L.icon({
+                iconUrl: gdLogo,
+                iconSize: [24, 21],
+                // iconAnchor: [22, 94],
+                // popupAnchor: [-3, -76],
+                // shadowUrl: 'gatsby-icon.png',
+                // shadowSize: [68, 95],
+                // shadowAnchor: [22, 94]
+            });
+
+            const markerOptions = {
+                icon,
+                riseOnHover: true
+            };
+
+            const popUpOptions = {
+                minWidth: 400
+            };
+            locations.forEach((data, i) => {
+                const marker = L.marker([data.lat, data.lon], markerOptions).addTo(map);
+                addTooltip(marker, i, data);
+
+
+                // marker.bindPopup(getPopupContent, popUpOptions);
+                marker.on('click', function() {
+                    onLocationChange && onLocationChange(data);
+                });
+            });
+        }
+
         // Initialize Windy API
         window.windyInit(options, windyAPI => {
             // windyAPI is ready, and contain 'map', 'store',

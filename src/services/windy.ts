@@ -73,8 +73,8 @@ export function getAverage(data: PointForecast): WeatherData {
     };
 }
 
-export async function getImageUrl(lat, lon): Promise<any> {
-    const path = `https://api.windy.com/api/webcams/v2/list/nearby=${lat},${lon}?show=webcams:image`
+export async function getImageUrl(lat, lon): Promise<WebcamsResponse> {
+    const path = `https://api.windy.com/api/webcams/v2/list/nearby=${lat},${lon},5?show=webcams:image,location,player`
     const options = {
         method: "get",
         headers: {
@@ -85,6 +85,8 @@ export async function getImageUrl(lat, lon): Promise<any> {
     console.log({data}, 'mzmz');
     return data.json();
 }
+
+
 
 // export async function getTempSnowData(lat, lon): Promise<PointForecast> {
 //     return get(
