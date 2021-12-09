@@ -139,27 +139,27 @@ export function LocationDrawer() {
                             switch (i) {
                                 case 0:
                                     itemProps = {
-                                        text: `🥇 ${location.name}`
+                                        text: `${i+1}. ${location.name} 🥇`
                                     };
                                     break;
                                 case 1:
                                     itemProps = {
-                                        text: `🥈 ${location.name}`
+                                        text: `${i+1}. ${location.name} 🥈`
                                     };
                                     break;
                                 case 2:
                                     itemProps = {
-                                        text: `🥉 ${location.name}`
+                                        text: `${i+1}. ${location.name} 🥉`
                                     };
                                     break;
                                 default:
                                     if (hottestLocation.name === location.name) {
                                         itemProps = {
-                                            text: `🔥 ${location.name}`
+                                            text: `${i+1}. ${location.name} 🔥`
                                         };
                                     } else {
                                         itemProps = {
-                                            text: `${location.name}`
+                                            text: `${i+1}. ${location.name}`
                                         };
                                     }
                                     break;
@@ -167,7 +167,7 @@ export function LocationDrawer() {
 
                             return <ListItemButton key={itemProps.text}
                                                    selected={currentLocation?.name === location.name}
-                                                   onClick={()=>{setCurrentLocation(location)}}
+                                                   onClick={(e)=>{setCurrentLocation(location)}}
                                                    >
                                 {/*<ListItemIcon>*/}
                                 {/*    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}

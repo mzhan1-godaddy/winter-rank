@@ -36,23 +36,24 @@ export function useWindyMap() {
     }
 
     function addTooltip(marker, rank, data: LocationWeatherData) {
-        const str = `<b>${data.name}</b><div>${data.tempF.toFixed(2)}°F</div>`;
+        const str1 = `<b>${data.name}</b>`;
+        const str2 = `<div>${data.tempF.toFixed(2)}°F</div>`;
         switch (rank) {
             case 0:
-                marker.bindTooltip(`🥇 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+                marker.bindTooltip(`${str1} 🥇${str2}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
                 break;
             case 1:
-                marker.bindTooltip(`🥈 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+                marker.bindTooltip(`${str1} 🥈${str2}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
                 break;
             case 2:
-                marker.bindTooltip(`🥉 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+                marker.bindTooltip(`${str1} 🥉${str2}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
                 break;
             default:
 
                 if (hottestLocation.name === data.name) {
-                    marker.bindTooltip(`🔥 ${str}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
+                    marker.bindTooltip(`${str1} 🔥${str2}`, STICKY_TOOLTIP_OPTIONS).openTooltip();
                 } else {
-                    marker.bindTooltip(str, DEFAULT_TOOLTIP_OPTIONS);
+                    marker.bindTooltip(`${str1}${str2}`, DEFAULT_TOOLTIP_OPTIONS);
                     // marker.closeTooltip();
                 }
 
