@@ -145,9 +145,10 @@ export function LocationDrawer({location}) {
                     ))}
                 </List>
             </Drawer>
-            <Main open={open}>
-                <DrawerHeader />
-            </Main>
+            {/*<Main open={open}>*/}
+                {/*<DrawerHeader />*/}
+
+            {/*</Main>*/}
         </Box>
     );
 }

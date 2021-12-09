@@ -6,6 +6,8 @@ import {TemperatureView} from "../components/windy/temperatureView";
 import {Webcams} from "../components/windy/webcams";
 import {useState} from "react";
 import {LocationDrawer} from "../components/locationDrawer";
+import {LocationContextProvider} from "../context/locationContext";
+import {orderedLocationWeatherData} from "../cache/12-08-21";
 
 
 const IndexPage = () => {
@@ -17,12 +19,12 @@ const IndexPage = () => {
     }
 
     return (
-        <Layout>
+        <LocationContextProvider>
             <Seo title="Home"/>
             <TemperatureView onLocationChange={handleLocationChange}/>
             <Webcams location={location}/>
             <LocationDrawer location={location}/>
-        </Layout>
+        </LocationContextProvider>
     )
 }
 
