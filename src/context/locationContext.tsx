@@ -16,6 +16,7 @@ export function LocationContextProvider(
     {
         children,
         locations,
+        hottestLocation
     }: any
 ): JSX.Element {
     const [_locations, _setLocations] = useState(locations);
@@ -28,7 +29,8 @@ export function LocationContextProvider(
     const providerValue = {
         values: {
             currentLocation: _currentLocation,
-            locations: _locations
+            locations: _locations,
+            hottestLocation
         },
         actions: {
             setCurrentLocation
