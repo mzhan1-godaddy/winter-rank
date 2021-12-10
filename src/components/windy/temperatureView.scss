@@ -1,0 +1,30 @@
+#windy {
+  width: 100%;
+  height: 100vh;
+  //top: 0;
+  //left: 0;
+  //position: relative;
+}
+
+#windy #bottom,
+#windy #mobile-ovr-select {
+//#windy #embed-zoom {
+  display: none !important;
+}
+
+#windy #embed-zoom .zoom-ctrl  {
+  &.zoom-plus {
+    margin-top: 20px;
+  }
+}
+
+#windy #logo-wrapper {
+  display: none !important;
+  //top: initial;
+  //bottom: 65px;
+}
+
+#windy #logo-wrapper #logo {
+  display: none !important;
+  //left: 80px;
+}
