@@ -1,6 +1,11 @@
 import {getImageUrl, LocationWeatherData, Webcam, WebcamsResponse} from "../../services/windy";
 import React, {useEffect, useState} from 'react';
 import {useLocationContext} from "../../context/locationContext";
+import {getWikiData, WikipediaData} from "../../services/wiki";
+
+import './webcams.scss';
+import {WebcamView} from "./webcamView";
+import {Divider} from "@mui/material";
 
 const res: WebcamsResponse = {
     "status": "OK",
@@ -93,18 +98,26 @@ const res: WebcamsResponse = {
     }
 };
 
+
 export function Webcams() {
 
     //style="background-image: url(https://images-webcams.windy.com/06/1576526006/current/preview/1576526006.jpg)"
     const {currentLocation} = useLocationContext();
     const [webcams, setWebcams] = useState([]);
     useEffect(() => {
-        if (currentLocation)
-            getImageUrl(currentLocation.lat, currentLocation.lon).then((res) => {
-                console.log({res});
-                setWebcams(res.result.webcams);
-            });
+        if (currentLocation) {
+            getImageUrl(currentLocation.lat, currentLocation.lon)
+                .then((res) => {
+                    console.log({res});
+                    setWebcams(res.result.webcams);
+                });
+
+
+        }
+
+
     }, [currentLocation?.name])
+
 
     // return (
     //     <iframe
@@ -115,20 +128,20 @@ export function Webcams() {
     //     </iframe>
     // );
 
+    // {webcams && webcams.length > 0 && <img src={webcams[0].image.current.preview}/>}
+
+
+    // {webcams && webcams.length > 0 && <iframe width="498" height="300"
+    // {/*                                          src={`${webcams[0].location.wikipedia}?rvprop=content&rvsection=0`}></iframe>}*/}
     return (
-        <div>
-            {currentLocation && webcams && webcams.length=== 0 && <p>no webcams for {currentLocation.name}</p>}
+        <>
+            {currentLocation && webcams && webcams.length === 0 && <p className='wiki-description top-margin'>No webcams found for {currentLocation.name}</p>}
             {webcams && webcams.length > 0 && webcams.map((webcam: Webcam, i) => {
-                return <iframe
-                    width="498" height="300"
-                    name={`windy-webcam-timelapse-player-iframe-${i}`}
-                    id={`windy-webcam-timelapse-player-iframe-${i}`}
-                    key={`windy-webcam-timelapse-player-iframe-${i}`}
-                    src={`${webcam.player.day.embed}?rel=0&autoplay=1`}
-                    allow={'autoplay'}
-                >
-                </iframe>
+                return <>
+                    <WebcamView webcam={webcam}/>
+                    <Divider/>
+                </>;
             })}
-        </div>
+        </>
     )
 }

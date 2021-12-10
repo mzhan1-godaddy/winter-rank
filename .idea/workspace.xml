@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48e3ae28-9e2d-4a8d-b372-bc57474fa279" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/windy/webcamView.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/windy/webcams.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/wiki.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/locationDrawer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rankingDrawer.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/locationDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rankingDrawer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/locationViewDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/locationViewDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/rankingDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rankingDrawer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/windy/webcams.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/webcams.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +36,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="TypeScript JSX&#10;JSON&#10;TEXT" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JSON&#10;TypeScript JSX&#10;TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -48,6 +49,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/windy" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/windy" />
     </key>
   </component>
@@ -222,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639090985219</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="wip">
+      <created>1639091373019</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1639091373019</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

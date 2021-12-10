@@ -136,8 +136,10 @@ export function LocationViewDrawer() {
                     </IconButton>
                 </DrawerHeader>
                 <div className='rank-container'>
-                    <h1>XD</h1>
+                    <h1>{currentLocation?.name}</h1>
 
+
+                    <Divider/>
                     <Webcams/>
                 </div>
             </Drawer>

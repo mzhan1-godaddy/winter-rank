@@ -135,7 +135,7 @@ export function RankingDrawer() {
                     </IconButton>
                 </DrawerHeader>
                 <div className='rank-container'>
-                    <h1>❄️ GoDaddy Snowfall Ranking</h1>
+                    <h1>GoDaddy Snowfall Ranking ❄️</h1>
 
                     <List>
                         {locations && locations.map((location, i) => {
