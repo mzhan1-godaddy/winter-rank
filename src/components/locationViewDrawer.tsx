@@ -20,6 +20,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import AddIcon from '@mui/icons-material/Add';
 import {Fab, ListItemButton} from "@mui/material";
 import './rankingDrawer.scss';
+import './windy/webcams.scss';
 import {useLocationContext} from "../context/locationContext";
 import {useEffect} from "react";
 import {Webcams} from "./windy/webcams";
@@ -137,6 +138,14 @@ export function LocationViewDrawer() {
                 </DrawerHeader>
                 <div className='rank-container'>
                     <h1>{currentLocation?.name}</h1>
+
+                    <Divider/>
+                    <p className='rank-text'>
+                        <b>Snow Precipitation (3 hours)</b> {currentLocation?.snow.toFixed(6)}m
+                    </p>
+                    <p className='rank-text'>
+                        {currentLocation?.tempF.toFixed(2)}°F
+                    </p>
 
 
                     <Divider/>

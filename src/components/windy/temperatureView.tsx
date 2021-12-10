@@ -8,14 +8,14 @@ import {useWindyMap} from "./useWindyMap";
 const DEFAULT_TOOLTIP_OPTIONS = {
     sticky: false,
     permanent: false,
-    offset: window.L.point(6, 0),
+    // offset: window.L.point(6, 0),
     direction: 'right'
 }
 
 const STICKY_TOOLTIP_OPTIONS = {
     sticky: false,
     permanent: true,
-    offset: window.L.point(6, 0),
+    // offset: window.L.point(6, 0),
     direction: 'right'
 }
 

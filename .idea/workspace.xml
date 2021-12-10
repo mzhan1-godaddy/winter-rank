@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48e3ae28-9e2d-4a8d-b372-bc57474fa279" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/windy/webcamView.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/windy/webcams.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/wiki.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatsby-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/locationViewDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/locationViewDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/rankingDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rankingDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/windy/webcams.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/webcams.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/rankingDrawer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rankingDrawer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/windy/temperatureView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/temperatureView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/windy/useWindyMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/useWindyMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/windy/windy-map.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/windy/windy-map.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639091373019</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="wip">
+      <created>1639094658875</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1639094658875</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
